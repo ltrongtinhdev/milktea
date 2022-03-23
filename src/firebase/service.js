@@ -12,7 +12,9 @@ export const addDocument = (collection, data) => {
 export const deleteDocument = (collection, id) => {
   db.collection(collection).doc(id).delete();
 };
-
+export const updateDocument = (collection, id,obj) => {
+  db.collection(collection).doc(id).update({...obj,createdAt: firebase.firestore.FieldValue.serverTimestamp(),});
+};
 // tao keywords cho displayName, su dung cho search
 export const generateKeywords = (displayName) => {
   // liet ke tat cac hoan vi. vd: name = ["David", "Van", "Teo"]

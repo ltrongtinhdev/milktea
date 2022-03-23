@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar';
 import Home from './screens/Home'
 import Order from './screens/Order';
 import Payment from './screens/Payment';
+import Menu from './screens/Menu';
 function App() {
   return (
     <div className="container">
@@ -17,6 +18,7 @@ function App() {
               <Route path='/home' element={<Home />} />
               <Route path='/order' element={<Order />} />
               <Route path='/payment' element={<Payment />} />
+              <Route path='/menu' element={<Menu />} />
               <Route path='*' element={<Home />} />
             </Routes>
         </Router>
