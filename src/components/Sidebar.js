@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <Link className="nav-link" to="/home">Trang chủ</Link>
                     <Link className="nav-link" to="/menu">Order - Toco</Link>
                     <Link className="nav-link" to="/order">Thông báo</Link>
-                    <Link className="nav-link" to="/payment">Thanh toán</Link>
+                    <Link className="nav-link" to="/payment">AI - Đoán tên</Link>
                 </div>
                 </div>
             </div>
