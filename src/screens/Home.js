@@ -27,6 +27,15 @@ const headers = [
     { text: 'Thời gian', align: 'right', value: 'timer' },
     { text: '', align: 'right', value: 'button' },
     { text: '', align: 'right', value: 'edit' },
+];
+
+const brandData = [
+    { id: 'TAY', text: 'The Alley' },
+    { id: 'GCA', text: 'Gongcha' },
+    { id: 'KOI', text: 'KOI' },
+    { id: 'NOW', text: 'NOW' },
+    { id: 'PLG', text: 'Phúc Long' },
+    { id: 'TCO', text: 'Toco Toco' }
 ]
 
 const Home = (props) => {
@@ -74,6 +83,8 @@ const Home = (props) => {
         if (messages) {
 
             setArrData(messages ? messages.map((item) => {
+                item.brand = brandData.find(c => c.id === item.brand).text;
+
                 return {
                     ...item,
                     timer: dayjs(item.createdAt?.toDate().toString()).format('DD/MM/YY HH:mm'),
@@ -135,7 +146,7 @@ const Home = (props) => {
     return (
         <div>
             <Card sx={{ minWidth: 275 }}>
-                <CardHeader title="Thông tin đặt món" />
+                <CardHeader title="Thông tin đặt món" sx={{ backgroundColor: '#687889', color: '#FFF', backgroundImage: '../../public/logo512.png' }} />
                 <CardContent>
                     <Dialog maxWidth={300} visible={isAlert} onClose={() => setAlert(false)}>
                         <h2>{messageError ? messageError : ''}</h2>
@@ -182,12 +193,13 @@ const Home = (props) => {
                                             value={typeBrand}
                                             onChange={onSelectBrand}
                                         >
-                                            <FormControlLabel value="TAY" control={<Radio />} label="The Alley" />
-                                            <FormControlLabel value="GCA" control={<Radio />} label="Gongcha" />
-                                            <FormControlLabel value="KOI" control={<Radio />} label="KOI" />
-                                            <FormControlLabel value="NOW" control={<Radio />} label="NOW" />
-                                            <FormControlLabel value="PLG" control={<Radio />} label="Phúc Long" />
-                                            <FormControlLabel value="TCO" control={<Radio />} label="Toco Toco" />
+                                            {
+                                                brandData.map((item) => {
+                                                    return (
+                                                        <FormControlLabel value={item.id} control={<Radio />} label={item.text} />
+                                                    )
+                                                })
+                                            }
                                         </RadioGroup>
                                     </FormControl>
                                 </div>
