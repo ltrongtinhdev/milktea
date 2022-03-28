@@ -20,7 +20,7 @@ const headers = [
     { text: 'Tên', align: 'left', value: 'user' },
     { text: 'Sản phẩm', align: 'left', value: 'product' },
     { text: 'Số lượng', align: 'right', value: 'count' },
-    { text: 'Thương hiệu', align: 'right', value: 'brand' },
+    { text: 'Thương hiệu', align: 'right', value: 'nameBrand' },
     { text: 'Tỷ lệ đường', align: 'right', value: 'sugar' },
     { text: 'Tỷ lệ đá', align: 'right', value: 'ice' },
     { text: 'Loại', align: 'right', value: 'size' },
@@ -83,13 +83,14 @@ const Home = (props) => {
         if (messages) {
 
             setArrData(messages ? messages.map((item) => {
-                console.log(brandData)
-
-                
-                item.brand = brandData.find(c => c.brand === item.brand)?.text;
+                let nameBrand = ''
+                if(item.brand) {
+                    nameBrand = brandData.find(db => db.id === item.brand).text
+                }
 
                 return {
                     ...item,
+                    nameBrand,
                     timer: dayjs(item.createdAt?.toDate().toString()).format('DD/MM/YY HH:mm'),
                     button: <Button onClick={() => handleDelete(item)} color='error'>Xoá</Button>,
                     edit: <Button onClick={() => handleEdit(item)} color='info' variant='contained'>Sửa</Button>,
