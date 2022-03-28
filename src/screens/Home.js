@@ -83,7 +83,10 @@ const Home = (props) => {
         if (messages) {
 
             setArrData(messages ? messages.map((item) => {
-                item.brand = brandData.find(c => c.id === item.brand).text;
+                console.log(item)
+
+                
+                item.brand = brandData.find(c => c.brand === item.brand).text;
 
                 return {
                     ...item,
